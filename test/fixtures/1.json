@@ -1,0 +1,74 @@
+{
+  "caseSensitive": false,
+  "properties": {},
+  "inports": {},
+  "outports": {},
+  "groups": [],
+  "processes": {
+    "startNode": {
+      "component": "start",
+      "metadata": {
+        "label": "start",
+        "x": 540,
+        "y": 180,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "endNode": {
+      "component": "end",
+      "metadata": {
+        "label": "end",
+        "x": 756,
+        "y": 180,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "9b367e24-352f-4ad0-b739-d7ee6b079082": {
+      "component": "scene",
+      "metadata": {
+        "label": "scene",
+        "x": 600,
+        "y": 200,
+        "subGraph": {
+          "caseSensitive": false,
+          "properties": {},
+          "inports": {},
+          "outports": {},
+          "groups": [],
+          "processes": {
+            "startNode": {
+              "component": "start",
+              "metadata": {
+                "label": "start",
+                "x": 540,
+                "y": 180,
+                "parentNode": "",
+                "width": 72,
+                "height": 72
+              }
+            },
+            "endNode": {
+              "component": "end",
+              "metadata": {
+                "label": "end",
+                "x": 756,
+                "y": 180,
+                "parentNode": "",
+                "width": 72,
+                "height": 72
+              }
+            }
+          },
+          "connections": []
+        },
+        "width": 72,
+        "height": 72
+      }
+    }
+  },
+  "connections": []
+}
