@@ -4,14 +4,13 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "nvm": "nvm use",
-    "precommit": "npm run nvm && npm t",
+    "precommit": "npm t",
     "lint": "standard --fix",
     "unit": "stryker run",
     "audit": "npm audit",
     "test": "npm run lint && npm run unit && npm run audit",
-    "dev": "npm run nvm && ncc run server",
-    "build": "npm run nvm && ncc build server"
+    "dev": "ncc run server",
+    "build": "ncc build server"
   },
   "author": "",
   "license": "ISC",
