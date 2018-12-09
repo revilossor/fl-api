@@ -1,17 +1,12 @@
-const request = require('supertest')
-
-let app
+const express = require('express')
 const mockVersionRouter = jest.fn((req, res) => res.send('mockVersionRouter'))
 
 beforeAll(() => {
+  jest.spyOn(express.application, 'use')
   jest.mock('./routers/version', () => mockVersionRouter)
-  app = require('./app')
+  require('./app')
 })
 
-it('uses the version router for /version', () => request(app).get('/version')
-  .then(response => {
-    expect(mockVersionRouter).toHaveBeenCalled()
-    expect(response.statusCode).toBe(200)
-    expect(response.text).toBe('mockVersionRouter')
-  })
-)
+it('uses the version router for /version', () => {
+  expect(express.application.use).toHaveBeenCalledWith('/version', mockVersionRouter)
+})
