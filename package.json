@@ -4,13 +4,14 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "precommit": "npm t",
     "lint": "standard --fix",
-    "unit": "stryker run",
+    "mutation": "stryker run",
     "audit": "npm audit",
-    "test": "npm run lint && npm run unit && npm run audit",
+    "test": "npm run lint && npm run unit && npm run mutation && npm run audit",
+    "unit": "jest",
     "dev": "ncc run server",
-    "build": "ncc build server"
+    "build": "ncc build server",
+    "start": "node dist"
   },
   "author": "",
   "license": "ISC",
@@ -35,5 +36,10 @@
     "env": [
       "jest"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm t"
+    }
   }
 }
