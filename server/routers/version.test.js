@@ -7,9 +7,13 @@ const mockPackageJSON = { version: 'a.b.c' }
 
 beforeAll(() => {
   jest.mock('../../package.json', () => mockPackageJSON)
-
+  jest.spyOn(express.Router, 'route')
   app = express()
   app.use('/', require('./version'))
+})
+
+it('sets a route for "/"', () => {
+  expect(express.Router.route).toHaveBeenCalledWith('/')
 })
 
 it('responds with the package json version', () => request(app).get('/')
