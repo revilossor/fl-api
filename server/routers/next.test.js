@@ -15,6 +15,12 @@ it('sets a route for "/"', () => {
   expect(express.Router.route).toHaveBeenCalledWith('/')
 })
 
+it('404 for GET requests', () => request(app).get('/')
+  .then(response => {
+    expect(response.statusCode).toBe(404)
+  })
+)
+
 describe('if there are missing properties in the post request', () => {
   it('400 with missing story property', () => request(app).post('/')
     .send({ state: {}, current: 'nodeId' })

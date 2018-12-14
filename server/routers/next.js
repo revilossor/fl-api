@@ -1,12 +1,12 @@
 const router = require('express').Router()
 
+const required = ['story', 'state', 'current']
+// IDEA extract this to validation module
 const validate = (body, required) => required.reduce((errors, property) =>
   body[property]
     ? errors
     : [ ...errors, `missing "${property}" property in request` ]
 , [])
-
-const required = ['story', 'state', 'current']
 
 router.route('/')
   .post((req, res) => {
