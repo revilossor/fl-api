@@ -16,6 +16,7 @@ const processScene = (graph, node, path) => {
   }
 }
 
+// TODO this could be broken down a bit - it does more than get children, with the path and subgraph stuff...
 const processEnd = (graph, node, path) => {
   if (path.length === 0) {
     return {
