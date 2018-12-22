@@ -17,7 +17,6 @@ afterEach(() => {
 })
 
 describe('graph', () => {
-
   const someGraph = { the: 'moon' }
   let result
 
@@ -32,5 +31,4 @@ describe('graph', () => {
   it('returns the result from the validator', () => {
     expect(result).toBe(mockValidateResult)
   })
-
 })

@@ -5,7 +5,6 @@ const linear = require('../../fixtures/linear_graph')
 const validate = require('../validate')
 
 describe('next', () => {
-
   beforeAll(() => {
     jest.spyOn(validate, 'graph')
   })
@@ -15,7 +14,6 @@ describe('next', () => {
   })
 
   describe('validates the graph argument', () => {
-
     const someInvalidGraph = { the: 'moon' }
     const mockValidateError = Error('mock validate error')
 
@@ -33,6 +31,5 @@ describe('next', () => {
     it('doesnt throw if a valid graph is passed', () => {
       expect(() => next(linear)).not.toThrow()
     })
-
   })
 })
