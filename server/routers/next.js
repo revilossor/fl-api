@@ -8,6 +8,7 @@ const validate = (body, required) => required.reduce((errors, property) =>
     : [ ...errors, `missing "${property}" property in request` ]
 , [])
 
+// TODO route for graphid, gets from store. if also graph in body, use that instead.
 router.route('/')
   .post((req, res) => {
     const errors = validate(req.body, required)

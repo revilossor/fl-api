@@ -1,0 +1,188 @@
+{
+  "caseSensitive": false,
+  "properties": {},
+  "inports": {},
+  "outports": {},
+  "groups": [],
+  "processes": {
+    "startNode": {
+      "component": "start",
+      "metadata": {
+        "label": "start",
+        "x": 468,
+        "y": 180,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "endNode": {
+      "component": "end",
+      "metadata": {
+        "label": "end",
+        "x": 1332,
+        "y": 180,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "orphan-1": {
+      "component": "answer",
+      "metadata": {
+        "label": "answer",
+        "x": 684,
+        "y": -72,
+        "width": 72,
+        "height": 72,
+        "utterances": "orphan-1"
+      }
+    },
+    "orphan-2": {
+      "component": "answer",
+      "metadata": {
+        "label": "answer",
+        "x": 1080,
+        "y": -72,
+        "width": 72,
+        "height": 72,
+        "utterances": "orphan-2"
+      }
+    },
+    "scene": {
+      "component": "scene",
+      "metadata": {
+        "label": "scene",
+        "x": 864,
+        "y": 180,
+        "subGraph": {
+          "caseSensitive": false,
+          "properties": {},
+          "inports": {},
+          "outports": {},
+          "groups": [],
+          "processes": {
+            "startNode": {
+              "component": "start",
+              "metadata": {
+                "label": "start",
+                "x": 540,
+                "y": 180,
+                "parentNode": "",
+                "width": 72,
+                "height": 72
+              }
+            },
+            "endNode": {
+              "component": "end",
+              "metadata": {
+                "label": "end",
+                "x": 1260,
+                "y": 180,
+                "parentNode": "",
+                "width": 72,
+                "height": 72
+              }
+            },
+            "orphan-3": {
+              "component": "answer",
+              "metadata": {
+                "label": "answer",
+                "x": 684,
+                "y": 36,
+                "width": 72,
+                "height": 72,
+                "utterances": "orphan-3"
+              }
+            },
+            "orphan-4": {
+              "component": "answer",
+              "metadata": {
+                "label": "answer",
+                "x": 900,
+                "y": 36,
+                "width": 72,
+                "height": 72,
+                "utterances": "orphan-4"
+              }
+            },
+            "orphan-5": {
+              "component": "answer",
+              "metadata": {
+                "label": "answer",
+                "x": 1116,
+                "y": 36,
+                "width": 72,
+                "height": 72,
+                "utterances": "orphan-5"
+              }
+            }
+          },
+          "connections": [
+            {
+              "src": {
+                "process": "startNode",
+                "port": "out"
+              },
+              "tgt": {
+                "process": "endNode",
+                "port": "in"
+              },
+              "metadata": {
+                "route": 0
+              }
+            }
+          ]
+        },
+        "width": 72,
+        "height": 72
+      }
+    },
+    "orphan-6": {
+      "component": "answer",
+      "metadata": {
+        "label": "answer",
+        "x": 864,
+        "y": 360,
+        "width": 72,
+        "height": 72,
+        "utterances": "orphan-6"
+      }
+    }
+  },
+  "connections": [
+    {
+      "src": {
+        "process": "orphan-1",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "orphan-2",
+        "port": "in"
+      }
+    },
+    {
+      "src": {
+        "process": "startNode",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "scene",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "scene",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "endNode",
+        "port": "in"
+      }
+    }
+  ]
+}

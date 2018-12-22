@@ -1,0 +1,256 @@
+{
+  "caseSensitive": false,
+  "properties": {
+    "settings": {}
+  },
+  "inports": {},
+  "outports": {},
+  "groups": [],
+  "processes": {
+    "startNode": {
+      "component": "start",
+      "metadata": {
+        "label": "start",
+        "x": 540,
+        "y": 180,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "endNode": {
+      "component": "end",
+      "metadata": {
+        "label": "end",
+        "x": 756,
+        "y": 180,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "scene_one": {
+      "component": "scene",
+      "metadata": {
+        "label": "scene_one",
+        "x": 648,
+        "y": 180,
+        "name": "scene_one",
+        "subGraph": {
+          "caseSensitive": false,
+          "properties": {
+            "settings": {}
+          },
+          "inports": {},
+          "outports": {},
+          "groups": [],
+          "processes": {
+            "startNode": {
+              "component": "start",
+              "metadata": {
+                "label": "start",
+                "x": 540,
+                "y": 180,
+                "parentNode": "",
+                "width": 72,
+                "height": 72
+              }
+            },
+            "endNode": {
+              "component": "end",
+              "metadata": {
+                "label": "end",
+                "x": 756,
+                "y": 180,
+                "parentNode": "",
+                "width": 72,
+                "height": 72
+              }
+            },
+            "scene_two": {
+              "component": "scene",
+              "metadata": {
+                "label": "scene_two",
+                "x": 648,
+                "y": 180,
+                "name": "scene_two",
+                "subGraph": {
+                  "caseSensitive": false,
+                  "properties": {
+                    "settings": {}
+                  },
+                  "inports": {},
+                  "outports": {},
+                  "groups": [],
+                  "processes": {
+                    "startNode": {
+                      "component": "start",
+                      "metadata": {
+                        "label": "start",
+                        "x": 540,
+                        "y": 180,
+                        "parentNode": "",
+                        "width": 72,
+                        "height": 72
+                      }
+                    },
+                    "endNode": {
+                      "component": "end",
+                      "metadata": {
+                        "label": "end",
+                        "x": 756,
+                        "y": 180,
+                        "parentNode": "",
+                        "width": 72,
+                        "height": 72
+                      }
+                    },
+                    "scene_three": {
+                      "component": "scene",
+                      "metadata": {
+                        "label": "scene_three",
+                        "x": 648,
+                        "y": 180,
+                        "name": "scene_three",
+                        "subGraph": {
+                          "caseSensitive": false,
+                          "properties": {
+                            "settings": {}
+                          },
+                          "inports": {},
+                          "outports": {},
+                          "groups": [],
+                          "processes": {
+                            "startNode": {
+                              "component": "start",
+                              "metadata": {
+                                "label": "start",
+                                "x": 540,
+                                "y": 180,
+                                "parentNode": "",
+                                "width": 72,
+                                "height": 72
+                              }
+                            },
+                            "endNode": {
+                              "component": "end",
+                              "metadata": {
+                                "label": "end",
+                                "x": 756,
+                                "y": 180,
+                                "parentNode": "",
+                                "width": 72,
+                                "height": 72
+                              }
+                            }
+                          },
+                          "connections": [
+                            {
+                              "src": {
+                                "process": "startNode",
+                                "port": "out"
+                              },
+                              "tgt": {
+                                "process": "endNode",
+                                "port": "in"
+                              },
+                              "metadata": {}
+                            }
+                          ]
+                        },
+                        "width": 72,
+                        "height": 72
+                      }
+                    }
+                  },
+                  "connections": [
+                    {
+                      "src": {
+                        "process": "startNode",
+                        "port": "out"
+                      },
+                      "tgt": {
+                        "process": "scene_three",
+                        "port": "in"
+                      },
+                      "metadata": {
+                        "route": null
+                      }
+                    },
+                    {
+                      "src": {
+                        "process": "scene_three",
+                        "port": "out"
+                      },
+                      "tgt": {
+                        "process": "endNode",
+                        "port": "in"
+                      },
+                      "metadata": {}
+                    }
+                  ]
+                },
+                "width": 72,
+                "height": 72
+              }
+            }
+          },
+          "connections": [
+            {
+              "src": {
+                "process": "startNode",
+                "port": "out"
+              },
+              "tgt": {
+                "process": "scene_two",
+                "port": "in"
+              },
+              "metadata": {
+                "route": null
+              }
+            },
+            {
+              "src": {
+                "process": "scene_two",
+                "port": "out"
+              },
+              "tgt": {
+                "process": "endNode",
+                "port": "in"
+              },
+              "metadata": {}
+            }
+          ]
+        },
+        "width": 72,
+        "height": 72
+      }
+    }
+  },
+  "connections": [
+    {
+      "src": {
+        "process": "startNode",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "scene_one",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "scene_one",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "endNode",
+        "port": "in"
+      },
+      "metadata": {}
+    }
+  ]
+}

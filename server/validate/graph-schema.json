@@ -1,0 +1,17 @@
+{
+  "id": "/Graph",
+  "type": "object",
+  "properties": {
+    "processes": {
+      "type": "object",
+      "items": { "type": "object" },
+      "required": true
+    },
+    "connections": {
+      "type": "array",
+      "items": { "type": "object" },
+      "required": true,
+      "uniqueItems": true
+    }
+  }
+}

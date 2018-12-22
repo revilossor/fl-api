@@ -1,0 +1,128 @@
+{
+  "caseSensitive": false,
+  "properties": {},
+  "inports": {},
+  "outports": {},
+  "groups": [],
+  "processes": {
+    "startNode": {
+      "component": "start",
+      "metadata": {
+        "label": "start",
+        "x": 36,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "a": {
+      "component": "talk",
+      "metadata": {
+        "label": "a",
+        "x": 46,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "b": {
+      "component": "talk",
+      "metadata": {
+        "label": "b",
+        "x": 66,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "c": {
+      "component": "talk",
+      "metadata": {
+        "label": "c",
+        "x": 86,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "endNode": {
+      "component": "end",
+      "metadata": {
+        "label": "end",
+        "x": 288,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    }
+  },
+  "connections": [
+    {
+      "src": {
+        "process": "startNode",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "a",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "a",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "b",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "a",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "c",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "b",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "endNode",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "c",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "endNode",
+        "port": "in"
+      }
+    }
+  ]
+}

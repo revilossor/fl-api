@@ -1,0 +1,115 @@
+{
+  "caseSensitive": false,
+  "properties": {},
+  "inports": {},
+  "outports": {},
+  "groups": [],
+  "processes": {
+    "startNode": {
+      "component": "start",
+      "metadata": {
+        "label": "start",
+        "x": 36,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "one": {
+      "component": "talk",
+      "metadata": {
+        "label": "one",
+        "x": 46,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "two": {
+      "component": "talk",
+      "metadata": {
+        "label": "two",
+        "x": 66,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "three": {
+      "component": "talk",
+      "metadata": {
+        "label": "three",
+        "x": 86,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "endNode": {
+      "component": "end",
+      "metadata": {
+        "label": "end",
+        "x": 288,
+        "y": 36,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    }
+  },
+  "connections": [
+    {
+      "src": {
+        "process": "startNode",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "one",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "one",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "two",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "two",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "three",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "three",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "endNode",
+        "port": "in"
+      }
+    }
+  ]
+}

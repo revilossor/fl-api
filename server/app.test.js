@@ -23,10 +23,10 @@ it('parses json', () => {
   expect(express.application.use).toHaveBeenCalledWith(mockJsonParserMiddleware)
 })
 
-it('uses the version router for /version', () => {
+it('uses the version router on /version to get the the version of the app', () => {
   expect(express.application.use).toHaveBeenCalledWith('/version', mockVersionRouter)
 })
 
-it('uses the next router for /next', () => {
+it('uses the next router on /next to get the next node in a graph', () => {
   expect(express.application.use).toHaveBeenCalledWith('/next', mockNextRouter)
 })
