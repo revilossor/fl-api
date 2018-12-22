@@ -1,0 +1,19 @@
+{
+  "id": "/Request",
+  "type": "object",
+  "properties": {
+    "graph": {
+      "$ref": "/Graph"
+    },
+    "node": {
+      "type": "string"
+    },
+    "state": {
+      "type": "object",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
+}

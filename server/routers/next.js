@@ -1,20 +1,14 @@
 const router = require('express').Router()
-
-const required = ['story', 'state', 'current']
-// IDEA extract this to validation module
-const validate = (body, required) => required.reduce((errors, property) =>
-  body[property]
-    ? errors
-    : [ ...errors, `missing "${property}" property in request` ]
-, [])
+const validate = require('../validate')
+const graph = require('../graph')
 
 // TODO route for graphid, gets from store. if also graph in body, use that instead.
 router.route('/')
-  .post((req, res) => {
-    const errors = validate(req.body, required)
+  .post((req, res, next) => {
+    const { errors } = validate.request(req.body)
     errors.length > 0
-      ? res.status(400).json({ errors })
-      : res.json(req.body)
+      ? next(errors)
+      : res.json(graph.next(req.body.graph, req.body.node, req.body.state))
   })
 
 module.exports = router
