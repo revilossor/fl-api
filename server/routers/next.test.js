@@ -33,7 +33,9 @@ describe('if the post request is invalid', () => {
 
   beforeAll(() => {
     validate.request.mockReturnValueOnce({ errors: [mockValidateError] })
-    return request(app).post('/').send(someInvalidGraph).then(res => { response = res })
+    return request(app).post('/')
+      .send(someInvalidGraph)
+      .then(res => { response = res })
   })
 
   it('uses the validate module', () => {
