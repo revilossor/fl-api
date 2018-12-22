@@ -1,52 +1,58 @@
 const subGraph = require('./subGraph')
 
-const getChildren = (graph, node) => graph.connections.reduce((ids, connection) =>
-  connection.src.process === node && !ids.includes(connection.tgt.process)
+const getChildren = (graph, { current }) => graph.connections.reduce((ids, connection) =>
+  connection.src.process === current && !ids.includes(connection.tgt.process)
     ? [ ...ids, connection.tgt.process ]
     : ids,
-[]
+  []
 )
 
-const processScene = (graph, node, path) => {
-  const scenePath = [...path, node]
+const processScene = (graph, state) => {
+  const scenePath = [ ...state.path, state.current ]
   return {
     graph: subGraph(graph, scenePath),
     children: [ 'startNode' ],
-    path: scenePath
+    state: {
+      ...state,
+      path: scenePath
+    }
   }
 }
 
 // TODO this could be broken down a bit - it does more than get children, with the path and subgraph stuff...
-const processEnd = (graph, node, path) => {
-  if (path.length === 0) {
+const processEnd = (graph, state) => {
+  if (state.path.length === 0) {
     return {
       graph,
       children: [],
-      path
+      state
     }
   }
-  const parentPath = [ ...path ]
+  const parentPath = [ ...state.path ]
   const [ parentSceneId ] = parentPath.splice(-1, 1)
   const parentGraph = subGraph(graph, parentPath)
   return {
     graph: parentGraph,
-    children: getChildren(parentGraph, parentSceneId),
-    path: parentPath
+    children: getChildren(parentGraph, { ...state, current: parentSceneId }),
+    state: {
+      ...state,
+      path: parentPath
+    }
   }
 }
 
-const processNode = (graph, node, path) => ({
+const processNode = (graph, state) => ({
   graph,
-  children: getChildren(graph, node),
-  path
+  children: getChildren(graph, state),
+  state
 })
 
-const getNodeType = (graph, node, path) => subGraph(graph, path).processes[node].component
+const getNodeType = (graph, { path, current }) => subGraph(graph, path).processes[current].component
 
-module.exports = (graph, node, path) => {
-  switch (getNodeType(graph, node, path)) {
-    case 'scene': return processScene(graph, node, path)
-    case 'end': return processEnd(graph, node, path)
-    default: return processNode(graph, node, path)
+module.exports = (graph, state) => {
+  switch (getNodeType(graph, state)) {
+    case 'scene': return processScene(graph, state)
+    case 'end': return processEnd(graph, state)
+    default: return processNode(graph, state)
   }
 }

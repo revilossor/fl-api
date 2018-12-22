@@ -25,6 +25,7 @@ it('404 for GET requests', () => request(app).get('/')
   })
 )
 
+// TODO graph and state should be required
 describe('if the post request is invalid', () => {
   const someInvalidGraph = { the: 'moon' }
   const mockValidateError = Error('mock validate error')
@@ -49,8 +50,7 @@ describe('if the post request is invalid', () => {
 })
 
 describe('if the request is valid', () => {
-  const state = { the: 'moon' }
-  const node = 'one'
+  const state = { current: 'one', path: [] }
 
   beforeAll(() => {
     jest.spyOn(graph, 'next')
@@ -61,27 +61,30 @@ describe('if the request is valid', () => {
   })
 
   it('calls graph.next with the posted arguments', () => {
-    const input = { graph: linear, node, state }
+    const input = { graph: linear, state }
     return request(app).post('/')
       .send(input)
       .then(response => {
-        expect(graph.next).toHaveBeenCalledWith(linear, node, state)
+        expect(graph.next).toHaveBeenCalledWith(linear, state)
       })
   })
 
   // TODO test this for nodes that mutate?
-  it('if no state is supplied in the post body sets an empty object in the response', () => {
-    const input = { graph: linear, node }
+  it('if no state is supplied in the post body sets default state in the response', () => {
+    const input = { graph: linear }
     return request(app).post('/')
       .send(input)
       .then(response => {
         expect(response.statusCode).toBe(200)
-        expect(JSON.parse(response.text)).toEqual({ ...input, state: {} })
+        expect(JSON.parse(response.text)).toEqual({ ...input, state: {
+          current: 'startNode',
+          path: []
+        }})
       })
   })
 
   it('responds with the input arguments', () => {
-    const input = { graph: linear, node, state }
+    const input = { graph: linear, state }
     return request(app).post('/')
       .send(input)
       .then(response => {

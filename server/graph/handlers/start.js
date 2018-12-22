@@ -1,11 +1,12 @@
 const util = require('../util')
 
-module.exports = (graph, node, state, path) => {
-  const processed = util.children(graph, node, path)
+module.exports = (graph, state) => {
+  const processed = util.children(graph, state)
   return {
     graph: processed.graph,
-    node: processed.children[0],
-    path: processed.path,
-    state
+    state: {
+      ...state,
+      current: processed.children[0]
+    }
   }
 }

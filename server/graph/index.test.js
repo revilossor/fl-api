@@ -13,6 +13,15 @@ describe('next', () => {
     expect(() => next()).toThrow('no graph passed!')
   })
 
+  it('sets default if no state is passed', () => {
+    expect(next(linear)).toEqual(expect.objectContaining({
+      state: {
+        current: 'startNode',
+        path: []
+      }
+    }))
+  })
+
   describe('validates the graph argument', () => {
     const someInvalidGraph = { the: 'moon' }
     const mockValidateError = Error('mock validate error')

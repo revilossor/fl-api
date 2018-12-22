@@ -6,13 +6,13 @@ const scene = require('../../../fixtures/simple_scene')
 const deep = require('../../../fixtures/nested_scene')
 
 it('returns the ids of child nodes', () => {
-  expect(children(linear, 'startNode', [])).toEqual(expect.objectContaining({
+  expect(children(linear, { current: 'startNode', path: [] })).toEqual(expect.objectContaining({
     children: ['one']
   }))
 })
 
 it('returns multiple ids, if there are multiple children', () => {
-  expect(children(branching, 'a', [])).toEqual(expect.objectContaining({
+  expect(children(branching, { current: 'a', path: [] })).toEqual(expect.objectContaining({
     children: ['b', 'c']
   }))
 })
@@ -28,7 +28,7 @@ describe('if there are multiple connections to the same child', () => {
   })
 
   it('that child id will only appear once in the children array', () => {
-    expect(children(dupe, 'startNode', [])).toEqual(expect.objectContaining({
+    expect(children(dupe, { current: 'startNode', path: [] })).toEqual(expect.objectContaining({
       children: [ 'one' ]
     }))
   })
@@ -40,7 +40,7 @@ describe('if the node is a scene', () => {
   const path = []
 
   beforeAll(() => {
-    struct = children(scene, 'scene', path)
+    struct = children(scene, { current: 'scene', path })
   })
 
   it('the children will be the scenes startNode', () => {
@@ -48,7 +48,7 @@ describe('if the node is a scene', () => {
   })
 
   it('the path will have the scene id appended to it', () => {
-    expect(struct.path).toEqual(['scene'])
+    expect(struct.state.path).toEqual(['scene'])
   })
 
   it('the graph will be the scenes subGraph', () => {
@@ -66,7 +66,7 @@ describe('if the node is an exitNode within a scene', () => {
   const path = ['scene_one', 'scene_two', 'scene_three']
 
   beforeAll(() => {
-    struct = children(deep, 'endNode', path)
+    struct = children(deep, { current: 'endNode', path })
   })
 
   it('the children will be the parent scenes children', () => {
@@ -74,7 +74,7 @@ describe('if the node is an exitNode within a scene', () => {
   })
 
   it('the path will be the path to the parent scene', () => {
-    expect(struct.path).toEqual(['scene_one', 'scene_two'])
+    expect(struct.state.path).toEqual(['scene_one', 'scene_two'])
   })
 
   it('the graph will be the parent graph containing the parent scene', () => {
@@ -92,7 +92,7 @@ describe('if the node has no children', () => {
   const path = []
 
   beforeAll(() => {
-    struct = children(linear, 'endNode', path)
+    struct = children(linear, { current: 'endNode', path })
   })
 
   it('the children will be an empty array', () => {
@@ -100,7 +100,7 @@ describe('if the node has no children', () => {
   })
 
   it('the path will be the path passed in', () => {
-    expect(struct.path).toEqual(path)
+    expect(struct.state.path).toEqual(path)
   })
 
   it('the graph will be the graph passed in', () => {

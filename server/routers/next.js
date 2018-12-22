@@ -8,7 +8,7 @@ router.route('/')
     const { errors } = validate.request(req.body)
     errors.length > 0
       ? next(errors)
-      : res.json(graph.next(req.body.graph, req.body.node, req.body.state))
+      : res.json(graph.next(req.body.graph, req.body.state))
   })
 
 module.exports = router

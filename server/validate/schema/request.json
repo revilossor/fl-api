@@ -5,14 +5,8 @@
     "graph": {
       "$ref": "/Graph"
     },
-    "node": {
-      "type": "string"
-    },
     "state": {
-      "type": "object",
-      "items": {
-        "type": "object"
-      }
+      "$ref": "/State"
     }
   },
   "additionalProperties": false

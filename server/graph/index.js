@@ -1,13 +1,14 @@
 const validate = require('../validate')
 
 module.exports = {
-  next: (graph, node = 'startNode', state = {}) => {
+  next: (graph, state = { current: 'startNode', path: [] }) => {
     if (!graph) { throw Error('no graph passed!') }
     validate.graph(graph).errors.forEach(error => { throw error })
 
+    // TODO call the correct handler...
+
     return {
       graph,
-      node,
       state
     }
   }

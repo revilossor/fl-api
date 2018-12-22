@@ -1,0 +1,15 @@
+{
+  "id": "/State",
+  "type": "object",
+  "properties": {
+    "current": {
+      "type": "string",
+      "required": true
+    },
+    "path": {
+      "type": "array",
+      "items": { "type": "string" },
+      "required": true
+    }
+  }
+}
