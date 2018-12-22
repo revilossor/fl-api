@@ -14,7 +14,6 @@ describe('returned struct', () => {
   })
 
   describe('state', () => {
-
     it('current is the node after the startNode', () => {
       expect(struct.state.current).toEqual('one')
     })
@@ -30,5 +29,4 @@ describe('returned struct', () => {
       ])
     })
   })
-
 })

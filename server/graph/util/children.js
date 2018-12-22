@@ -4,7 +4,7 @@ const getChildren = (graph, { current }) => graph.connections.reduce((ids, conne
   connection.src.process === current && !ids.includes(connection.tgt.process)
     ? [ ...ids, connection.tgt.process ]
     : ids,
-  []
+[]
 )
 
 const processScene = (graph, state) => {
