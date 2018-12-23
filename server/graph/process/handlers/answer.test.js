@@ -100,16 +100,26 @@ describe('state operations', () => {
   const stateWithKey = { ...state, answer: 'initial value' }
   const stateWithNumberKey = { ...state, answer: 10 }
 
+  const noopGraph = JSON.parse(JSON.stringify(graph))
   const appendGraph = JSON.parse(JSON.stringify(graph))
   const incrementGraph = JSON.parse(JSON.stringify(graph))
   const decrementGraph = JSON.parse(JSON.stringify(graph))
 
+  noopGraph.processes.answer_one.metadata.operation = undefined
   appendGraph.processes.answer_one.metadata.operation = 'append'
   incrementGraph.processes.answer_one.metadata.operation = 'increment'
   decrementGraph.processes.answer_one.metadata.operation = 'decrement'
 
   incrementGraph.processes.answer_one.metadata.stateValue = 5
   decrementGraph.processes.answer_one.metadata.stateValue = 5
+
+  // TODO if key and value are missing? cant use falsy for value cos might be 0 ...
+  it('if there is no operation, nothing happens', () => {
+    updated = handler(noopGraph, stateWithKey)
+    expect(updated.answer).toBe('initial value')
+    updated = handler(noopGraph, state)
+    expect(updated.answer).not.toBeDefined()
+  })
 
   describe('assign', () => {
     it('if the key exists in state, overwrites it', () => {
