@@ -1,0 +1,433 @@
+{
+  "caseSensitive": false,
+  "properties": {},
+  "inports": {},
+  "outports": {},
+  "groups": [],
+  "processes": {
+    "startNode": {
+      "component": "start",
+      "metadata": {
+        "label": "start",
+        "x": 324,
+        "y": 144,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "endNode": {
+      "component": "end",
+      "metadata": {
+        "label": "end",
+        "x": 2880,
+        "y": 144,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "talk_one": {
+      "component": "talk",
+      "metadata": {
+        "label": "talk_one",
+        "x": 504,
+        "y": 144,
+        "width": 72,
+        "height": 72,
+        "audio": "talk_one",
+        "text": "talk_one"
+      }
+    },
+    "question": {
+      "component": "question",
+      "metadata": {
+        "label": "question",
+        "x": 684,
+        "y": 144,
+        "width": 72,
+        "height": 72,
+        "audio": "question",
+        "text": "question",
+        "repromptAudio": "question",
+        "repromptText": "question",
+        "defaultOption": "answer_one"
+      }
+    },
+    "answer_one": {
+      "component": "answer",
+      "metadata": {
+        "label": "answer_one",
+        "x": 972,
+        "y": 36,
+        "width": 72,
+        "height": 72,
+        "audio": "answer_one_audio",
+        "text": "answer_one_text",
+        "stateKey": "answer",
+        "operation": "assign",
+        "stateValue": "one",
+        "utterances": "one"
+      }
+    },
+    "answer_two": {
+      "component": "answer",
+      "metadata": {
+        "label": "answer_two",
+        "x": 972,
+        "y": 252,
+        "width": 72,
+        "height": 72,
+        "audio": "answer_two",
+        "text": "answer_two",
+        "stateKey": "answer",
+        "operation": "assign",
+        "stateValue": "two",
+        "utterances": "two"
+      }
+    },
+    "random": {
+      "component": "random",
+      "metadata": {
+        "label": "random",
+        "x": 1224,
+        "y": 144,
+        "width": 72,
+        "height": 72
+      }
+    },
+    "randomiserBranch_one": {
+      "component": "randomiserBranch",
+      "metadata": {
+        "label": "randomiserBranch_one",
+        "x": 1476,
+        "y": 36,
+        "width": 72,
+        "height": 72,
+        "weight": "50"
+      }
+    },
+    "randomiserBranch_two": {
+      "component": "randomiserBranch",
+      "metadata": {
+        "label": "randomiserBranch_two",
+        "x": 1476,
+        "y": 252,
+        "width": 72,
+        "height": 72,
+        "weight": "50"
+      }
+    },
+    "decision": {
+      "component": "decision",
+      "metadata": {
+        "label": "decision",
+        "x": 1728,
+        "y": 144,
+        "width": 72,
+        "height": 72,
+        "stateKey": "answer",
+        "defaultOption": "branch_one"
+      }
+    },
+    "branch_one": {
+      "component": "branch",
+      "metadata": {
+        "label": "branch_one",
+        "x": 1944,
+        "y": 36,
+        "width": 72,
+        "height": 72,
+        "value": "one",
+        "audio": "branch_one",
+        "text": "branch_one"
+      }
+    },
+    "branch_two": {
+      "component": "branch",
+      "metadata": {
+        "label": "branch_two",
+        "x": 1944,
+        "y": 252,
+        "width": 72,
+        "height": 72,
+        "value": "two",
+        "audio": "branch_two",
+        "text": "branch_two"
+      }
+    },
+    "shuffleAndTake": {
+      "component": "shuffleAndTake",
+      "metadata": {
+        "label": "shuffleAndTake",
+        "x": 2160,
+        "y": 144,
+        "width": 72,
+        "height": 72
+      }
+    },
+    "talk_two": {
+      "component": "talk",
+      "metadata": {
+        "label": "talk_two",
+        "x": 2628,
+        "y": 144,
+        "width": 72,
+        "height": 72,
+        "audio": "talk_two",
+        "text": "talk_two"
+      }
+    },
+    "talk_shuffle_one": {
+      "component": "talk",
+      "metadata": {
+        "label": "talk_shuffle_one",
+        "x": 2376,
+        "y": 36,
+        "width": 72,
+        "height": 72,
+        "audio": "talk_shuffle_one",
+        "text": "talk_shuffle_one"
+      }
+    },
+    "talk_shuffle_two": {
+      "component": "talk",
+      "metadata": {
+        "label": "talk_shuffle_two",
+        "x": 2376,
+        "y": 252,
+        "width": 72,
+        "height": 72,
+        "audio": "talk_shuffle_two",
+        "text": "talk_shuffle_two"
+      }
+    }
+  },
+  "connections": [
+    {
+      "src": {
+        "process": "talk_two",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "endNode",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "branch_one",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "shuffleAndTake",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "branch_two",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "shuffleAndTake",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "decision",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "branch_one",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "decision",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "branch_two",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 0
+      }
+    },
+    {
+      "src": {
+        "process": "randomiserBranch_one",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "decision",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "randomiserBranch_two",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "decision",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "random",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "randomiserBranch_one",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "random",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "randomiserBranch_two",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 0
+      }
+    },
+    {
+      "src": {
+        "process": "question",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "answer_one",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "question",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "answer_two",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 0
+      }
+    },
+    {
+      "src": {
+        "process": "talk_one",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "question",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "startNode",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "talk_one",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 0
+      }
+    },
+    {
+      "src": {
+        "process": "answer_one",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "random",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "answer_two",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "random",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "shuffleAndTake",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "talk_shuffle_one",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "shuffleAndTake",
+        "port": "finally"
+      },
+      "tgt": {
+        "process": "talk_shuffle_two",
+        "port": "in"
+      },
+      "metadata": {
+        "route": null
+      }
+    },
+    {
+      "src": {
+        "process": "talk_shuffle_two",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "talk_two",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "talk_shuffle_one",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "talk_two",
+        "port": "in"
+      },
+      "metadata": {}
+    }
+  ]
+}
