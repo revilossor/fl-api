@@ -35,8 +35,8 @@
         "y": 144,
         "width": 72,
         "height": 72,
-        "audio": "talk_one",
-        "text": "talk_one"
+        "audio": "talk_one_audio",
+        "text": "talk_one_text"
       }
     },
     "question": {
