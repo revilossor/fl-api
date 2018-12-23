@@ -16,5 +16,39 @@ module.exports = (graph, state) => {
     audio.push(node.metadata.audio)
   }
 
-  return { ...state, current: children[0], text, audio }
+  const { stateKey, stateValue, operation } = node.metadata
+  const operationState = {}
+
+  if(operation) {
+
+    let value = state[stateKey]
+      ? operation.includes('crement')
+        ? typeof(state[stateKey]) === 'string'
+          ? 0
+          : state[stateKey]
+        : state[stateKey]
+      : operation.includes('crement')
+        ? 0
+        : ''
+
+    switch(operation) {
+      case 'assign':
+        value = stateValue
+      break;
+      case 'append':
+        value = `${value}${stateValue}`
+      break;
+      case 'increment':
+        value += stateValue
+      break;
+      case 'decrement':
+        value -= stateValue
+      break;
+    }
+
+    operationState[stateKey] = value
+
+  }
+
+  return { ...state, current: children[0], text, audio, ...operationState }
 }
