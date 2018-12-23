@@ -97,7 +97,6 @@ describe('audio', () => {
 })
 
 describe('state operations', () => {
-
   const stateWithKey = { ...state, answer: 'initial value' }
   const stateWithNumberKey = { ...state, answer: 10 }
 
@@ -113,7 +112,6 @@ describe('state operations', () => {
   decrementGraph.processes.answer_one.metadata.stateValue = 5
 
   describe('assign', () => {
-
     it('if the key exists in state, overwrites it', () => {
       updated = handler(graph, stateWithKey)
       expect(updated.answer).toBe('one')
@@ -123,11 +121,9 @@ describe('state operations', () => {
       updated = handler(graph, state)
       expect(updated.answer).toBe('one')
     })
-
   })
 
   describe('append', () => {
-
     it('if the key exists in state, appends to it', () => {
       updated = handler(appendGraph, stateWithKey)
       expect(updated.answer).toBe('initial valueone')
@@ -137,11 +133,9 @@ describe('state operations', () => {
       updated = handler(appendGraph, state)
       expect(updated.answer).toBe('one')
     })
-
   })
 
   describe('increment', () => {
-
     it('if the key exists in state as a number, increments it', () => {
       updated = handler(incrementGraph, stateWithNumberKey)
       expect(updated.answer).toBe(15)
@@ -156,11 +150,9 @@ describe('state operations', () => {
       updated = handler(incrementGraph, state)
       expect(updated.answer).toBe(5)
     })
-
   })
 
   describe('decrement', () => {
-
     it('if the key exists in state as a number, decrements it', () => {
       updated = handler(decrementGraph, stateWithNumberKey)
       expect(updated.answer).toBe(5)
@@ -175,7 +167,5 @@ describe('state operations', () => {
       updated = handler(decrementGraph, state)
       expect(updated.answer).toBe(-5)
     })
-
   })
-
 })

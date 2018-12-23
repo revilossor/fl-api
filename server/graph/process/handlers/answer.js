@@ -19,11 +19,10 @@ module.exports = (graph, state) => {
   const { stateKey, stateValue, operation } = node.metadata
   const operationState = {}
 
-  if(operation) {
-
+  if (operation) {
     let value = state[stateKey]
       ? operation.includes('crement')
-        ? typeof(state[stateKey]) === 'string'
+        ? typeof (state[stateKey]) === 'string'
           ? 0
           : state[stateKey]
         : state[stateKey]
@@ -31,23 +30,22 @@ module.exports = (graph, state) => {
         ? 0
         : ''
 
-    switch(operation) {
+    switch (operation) {
       case 'assign':
         value = stateValue
-      break;
+        break
       case 'append':
         value = `${value}${stateValue}`
-      break;
+        break
       case 'increment':
         value += stateValue
-      break;
+        break
       case 'decrement':
         value -= stateValue
-      break;
+        break
     }
 
     operationState[stateKey] = value
-
   }
 
   return { ...state, current: children[0], text, audio, ...operationState }
