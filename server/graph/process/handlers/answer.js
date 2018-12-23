@@ -20,7 +20,7 @@ module.exports = (graph, state) => {
   const operationState = {}
 
   if (operation) {
-    let value = state[stateKey]       // sorry
+    let value = state[stateKey] // sorry
       ? operation.includes('crement')
         ? typeof (state[stateKey]) === 'string'
           ? 0
