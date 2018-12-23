@@ -1,7 +1,7 @@
-const util = require('../util')
+const process = require('../process')
 
 module.exports = (graph, state) => {
-  const processed = util.children(graph, state)
+  const processed = process(graph, state)
   return {
     graph: processed.graph,
     state: {

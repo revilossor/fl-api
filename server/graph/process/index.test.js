@@ -1,4 +1,4 @@
-const children = require('./children')
+const index = require('./index')
 
 const linear = require('../../../fixtures/linear_graph')
 const branching = require('../../../fixtures/branching_graph')
@@ -6,13 +6,13 @@ const scene = require('../../../fixtures/simple_scene')
 const deep = require('../../../fixtures/nested_scene')
 
 it('returns the ids of child nodes', () => {
-  expect(children(linear, { current: 'startNode', path: [] })).toEqual(expect.objectContaining({
+  expect(index(linear, { current: 'startNode', path: [] })).toEqual(expect.objectContaining({
     children: ['one']
   }))
 })
 
-it('returns multiple ids, if there are multiple children', () => {
-  expect(children(branching, { current: 'a', path: [] })).toEqual(expect.objectContaining({
+it('returns multiple ids, if there are multiple index', () => {
+  expect(index(branching, { current: 'a', path: [] })).toEqual(expect.objectContaining({
     children: ['b', 'c']
   }))
 })
@@ -27,8 +27,8 @@ describe('if there are multiple connections to the same child', () => {
     })
   })
 
-  it('that child id will only appear once in the children array', () => {
-    expect(children(dupe, { current: 'startNode', path: [] })).toEqual(expect.objectContaining({
+  it('that child id will only appear once in the index array', () => {
+    expect(index(dupe, { current: 'startNode', path: [] })).toEqual(expect.objectContaining({
       children: [ 'one' ]
     }))
   })
@@ -40,10 +40,10 @@ describe('if the node is a scene', () => {
   const path = []
 
   beforeAll(() => {
-    struct = children(scene, { current: 'scene', path })
+    struct = index(scene, { current: 'scene', path })
   })
 
-  it('the children will be the scenes startNode', () => {
+  it('the index will be the scenes startNode', () => {
     expect(struct.children).toEqual(['startNode'])
   })
 
@@ -66,10 +66,10 @@ describe('if the node is an exitNode within a scene', () => {
   const path = ['scene_one', 'scene_two', 'scene_three']
 
   beforeAll(() => {
-    struct = children(deep, { current: 'endNode', path })
+    struct = index(deep, { current: 'endNode', path })
   })
 
-  it('the children will be the parent scenes children', () => {
+  it('the index will be the parent scenes index', () => {
     expect(struct.children).toEqual(['endNode'])
   })
 
@@ -86,16 +86,16 @@ describe('if the node is an exitNode within a scene', () => {
   })
 })
 
-describe('if the node has no children', () => {
+describe('if the node has no index', () => {
   let struct
 
   const path = []
 
   beforeAll(() => {
-    struct = children(linear, { current: 'endNode', path })
+    struct = index(linear, { current: 'endNode', path })
   })
 
-  it('the children will be an empty array', () => {
+  it('the index will be an empty array', () => {
     expect(struct.children).toEqual([])
   })
 
