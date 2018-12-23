@@ -5,18 +5,22 @@ const state = { current: 'scene', path: [] }
 
 let updated
 
-beforeAll(() => {
-  updated = handler(graph, state)
-})
+describe('traversal', () => {
 
-it('the updated current is the start node of the scene', () => {
-  expect(updated.current).toBe('startNode')
-})
+  beforeAll(() => {
+    updated = handler(graph, state)
+  })
 
-it('the updated path is the input path, with the scene id appended', () => {
-  expect(updated.path).toEqual([ 'scene' ])
-})
+  it('the updated current is the start node of the scene', () => {
+    expect(updated.current).toBe('startNode')
+  })
 
-it('no additional properties are added', () => {
-  expect(Object.keys(updated)).toEqual(Object.keys(state))
+  it('the updated path is the input path, with the scene id appended', () => {
+    expect(updated.path).toEqual([ 'scene' ])
+  })
+
+  it('no additional properties are added', () => {
+    expect(Object.keys(updated)).toEqual(Object.keys(state))
+  })
+
 })
