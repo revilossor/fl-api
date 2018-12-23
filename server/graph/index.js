@@ -4,15 +4,18 @@ module.exports = {
   next: (graph, state = { current: 'startNode', path: [] }) => {
     if (!graph) { throw Error('no graph passed!') }
     validate.graph(graph).errors.forEach(error => { throw error })
+    // TODO validate state...
 
-    // TODO call the correct handler...
+    // TODO process once...
 
     return {
       graph,
       state
     }
   }
+  /*
+  response: (graph, state = { current: 'startNode', path: [] }) => {
+    // TODO process till reach a response generating node...
+  }
+  */
 }
-
-// calls each of the handlers in turn, until a response node is reached.
-// returns story, state, response,

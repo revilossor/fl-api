@@ -1,12 +1,12 @@
 const sceneGraph = require('../../../fixtures/simple_scene')
 const nestedSceneGraph = require('../../../fixtures/nested_scene')
-const subGraph = require('./subgraph')
+const getSubGraph = require('./getSubGraph')
 
 it('gets the sub scene at the path one scene deep', () => {
   const expectedSubGraph = sceneGraph.processes.scene.metadata.subGraph
   const path = ['scene']
 
-  expect(subGraph(sceneGraph, path)).toEqual(expectedSubGraph)
+  expect(getSubGraph(sceneGraph, path)).toEqual(expectedSubGraph)
 })
 
 it('gets the sub scene at the path three scenes deep', () => {
@@ -15,5 +15,5 @@ it('gets the sub scene at the path three scenes deep', () => {
       .scene_two.metadata.subGraph.processes.scene_three.metadata.subGraph
   const path = ['scene_one', 'scene_two', 'scene_three']
 
-  expect(subGraph(nestedSceneGraph, path)).toEqual(expectedSubGraph)
+  expect(getSubGraph(nestedSceneGraph, path)).toEqual(expectedSubGraph)
 })
