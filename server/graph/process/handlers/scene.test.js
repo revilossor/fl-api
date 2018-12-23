@@ -6,7 +6,6 @@ const state = { current: 'scene', path: [] }
 let updated
 
 describe('traversal', () => {
-
   beforeAll(() => {
     updated = handler(graph, state)
   })
@@ -22,5 +21,4 @@ describe('traversal', () => {
   it('no additional properties are added', () => {
     expect(Object.keys(updated)).toEqual(Object.keys(state))
   })
-
 })

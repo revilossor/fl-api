@@ -3,7 +3,6 @@ const handler = require('./end')
 const graph = require('../../../../fixtures/simple_scene')
 
 describe('traversal', () => {
-  
   describe('if current node is the root end node', () => {
     const state = { current: 'endNode', path: [] }
 
@@ -47,5 +46,4 @@ describe('traversal', () => {
       expect(Object.keys(updated)).toEqual(Object.keys(state))
     })
   })
-
 })
