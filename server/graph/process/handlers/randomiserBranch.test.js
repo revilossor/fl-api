@@ -1,4 +1,4 @@
-const handler = require('./start')
+const handler = require('./randomiserBranch')
 
 const graph = require('../../../../fixtures/node_types')
 const state = { current: 'randomiserBranch_one', path: [] }
