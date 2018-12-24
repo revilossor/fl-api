@@ -5,9 +5,7 @@ const graph = require('../../../../fixtures/fork_graph')
 let updated
 
 describe('traversal', () => {
-
   describe('if the fork node has one child', () => {
-
     beforeAll(() => {
       updated = handler(graph, { current: 'fork_one', path: [] })
     })
@@ -19,11 +17,9 @@ describe('traversal', () => {
     it('the updated path is the input path', () => {
       expect(updated.path).toEqual([])
     })
-
   })
 
   describe('if the fork node has multiple children', () => {
-
     beforeAll(() => {
       updated = handler(graph, { current: 'fork_two', path: [] })
     })
@@ -36,7 +32,5 @@ describe('traversal', () => {
     it('the updated path is the input path', () => {
       expect(updated.path).toEqual([])
     })
-
   })
-
 })
