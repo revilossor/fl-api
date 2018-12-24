@@ -139,8 +139,8 @@
         "width": 72,
         "height": 72,
         "value": "one",
-        "audio": "branch_one",
-        "text": "branch_one"
+        "audio": "branch_one_audio",
+        "text": "branch_one_text"
       }
     },
     "branch_two": {
