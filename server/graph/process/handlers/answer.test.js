@@ -6,6 +6,8 @@ const state = { current: 'answer_one', path: [] }
 
 let updated
 
+// TODO guess this should remove question reprompt stuff from the state...
+
 describe('traversal', () => {
   beforeAll(() => {
     updated = handler(graph, state)

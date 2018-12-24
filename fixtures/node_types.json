@@ -47,10 +47,10 @@
         "y": 144,
         "width": 72,
         "height": 72,
-        "audio": "question",
-        "text": "question",
-        "repromptAudio": "question",
-        "repromptText": "question",
+        "audio": "question_audio",
+        "text": "question_text",
+        "repromptAudio": "question_repromptAudio",
+        "repromptText": "question_repromptText",
         "defaultOption": "answer_one"
       }
     },
