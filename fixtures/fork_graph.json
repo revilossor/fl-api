@@ -1,0 +1,145 @@
+{
+  "caseSensitive": false,
+  "properties": {},
+  "inports": {},
+  "outports": {},
+  "groups": [],
+  "processes": {
+    "startNode": {
+      "component": "start",
+      "metadata": {
+        "label": "start",
+        "x": 540,
+        "y": 180,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "endNode": {
+      "component": "end",
+      "metadata": {
+        "label": "end",
+        "x": 1152,
+        "y": 180,
+        "parentNode": "",
+        "width": 72,
+        "height": 72
+      }
+    },
+    "fork_one": {
+      "component": "fork",
+      "metadata": {
+        "label": "fork_one",
+        "x": 684,
+        "y": 180,
+        "width": 72,
+        "height": 72,
+        "defaultOption": "fork_two"
+      }
+    },
+    "fork_two": {
+      "component": "fork",
+      "metadata": {
+        "label": "fork_two",
+        "x": 864,
+        "y": 180,
+        "width": 72,
+        "height": 72,
+        "defaultOption": "talk_one"
+      }
+    },
+    "talk_one": {
+      "component": "talk",
+      "metadata": {
+        "label": "talk_one",
+        "x": 1008,
+        "y": 72,
+        "width": 72,
+        "height": 72
+      }
+    },
+    "talk_two": {
+      "component": "talk",
+      "metadata": {
+        "label": "talk_two",
+        "x": 1008,
+        "y": 288,
+        "width": 72,
+        "height": 72
+      }
+    }
+  },
+  "connections": [
+    {
+      "src": {
+        "process": "startNode",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "fork_one",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 0
+      }
+    },
+    {
+      "src": {
+        "process": "fork_one",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "fork_two",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "fork_two",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "talk_one",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "fork_two",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "talk_two",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 0
+      }
+    },
+    {
+      "src": {
+        "process": "talk_two",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "endNode",
+        "port": "in"
+      },
+      "metadata": {}
+    },
+    {
+      "src": {
+        "process": "talk_one",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "endNode",
+        "port": "in"
+      },
+      "metadata": {}
+    }
+  ]
+}

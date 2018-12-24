@@ -17,15 +17,12 @@ describe('traversal', () => {
   it('the updated path is the input path', () => {
     expect(updated.path).toEqual([])
   })
-
 })
 
 describe('text', () => {
-
   const stateWithText = { ...state, text: ['sometext'] }
 
   describe('if there is text in the node', () => {
-
     it('if there is text in state, node text is appended to it', () => {
       updated = handler(graph, stateWithText)
       expect(updated.text).toEqual([
@@ -43,7 +40,6 @@ describe('text', () => {
   })
 
   describe('if there is no text in the node', () => {
-
     const noTextGraph = JSON.parse(JSON.stringify(graph))
 
     beforeAll(() => {
@@ -59,17 +55,13 @@ describe('text', () => {
       updated = handler(noTextGraph, state)
       expect(updated.text).toEqual([])
     })
-
   })
-
 })
 
 describe('audio', () => {
-
   const stateWithAudio = { ...state, audio: ['someaudio'] }
 
   describe('if there is audio in the node', () => {
-
     it('if there is audio in state, node audio is appended to it', () => {
       updated = handler(graph, stateWithAudio)
       expect(updated.audio).toEqual([
@@ -84,11 +76,9 @@ describe('audio', () => {
         'talk_one_audio'
       ])
     })
-
   })
 
   describe('if there is no audio in the node', () => {
-
     const noAudioGraph = JSON.parse(JSON.stringify(graph))
 
     beforeAll(() => {
@@ -104,7 +94,5 @@ describe('audio', () => {
       updated = handler(noAudioGraph, state)
       expect(updated.audio).toEqual([])
     })
-
   })
-
 })
