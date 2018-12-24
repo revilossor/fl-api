@@ -101,7 +101,6 @@ describe('audio', () => {
 })
 
 describe('repromptText', () => {
-
   it('if there is repromptText in the node, its set in the updated state', () => {
     updated = handler(graph, state)
     expect(updated.repromptText).toBe('question_repromptText')
@@ -116,7 +115,6 @@ describe('repromptText', () => {
 })
 
 describe('repromptAudio', () => {
-
   it('if there is repromptAudio in the node, its set in the updated state', () => {
     updated = handler(graph, state)
     expect(updated.repromptAudio).toBe('question_repromptAudio')
