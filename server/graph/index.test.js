@@ -1,44 +1,37 @@
-// start, end, question, answer, talk, scene, shuffleandtake, decision, random, randomiserBrance, fork, branch
-const { next } = require('./index')
+let index
 
 const linear = require('../../fixtures/linear_graph')
-const validate = require('../validate')
+
+const mockProcessed = { the: 'moon' }
+const mockProcess = jest.fn(() => mockProcessed)
+
+const state = {
+  current: 'startNode',
+  path: []
+}
 
 describe('next', () => {
   beforeAll(() => {
-    jest.spyOn(validate, 'graph')
+    jest.mock('./process', () => mockProcess)
+    index = require('./index')
+  })
+
+  afterEach(() => {
+    mockProcess.mockClear()
   })
 
   it('throws if no graph is passed', () => {
-    expect(() => next()).toThrow('no graph passed!')
+    expect(() => index.next()).toThrow('no graph passed!')
   })
 
   it('sets default if no state is passed', () => {
-    expect(next(linear)).toEqual(expect.objectContaining({
-      state: {
-        current: 'startNode',
-        path: []
-      }
-    }))
+    index.next(linear)
+    expect(mockProcess).toHaveBeenCalledWith(linear, state)
   })
 
-  describe('validates the graph argument', () => {
-    const someInvalidGraph = { the: 'moon' }
-    const mockValidateError = Error('mock validate error')
-
-    it('uses the validate module', () => {
-      validate.graph.mockReturnValueOnce({ errors: [] })
-      next(someInvalidGraph)
-      expect(validate.graph).toHaveBeenCalledWith(someInvalidGraph)
-    })
-
-    it('throws errors from the validation module', () => {
-      validate.graph.mockReturnValueOnce({ errors: [ mockValidateError ] })
-      expect(() => next(someInvalidGraph)).toThrow(mockValidateError)
-    })
-
-    it('doesnt throw if a valid graph is passed', () => {
-      expect(() => next(linear)).not.toThrow()
-    })
+  it('calls process once with graph and state', () => {
+    index.next(linear, state)
+    expect(mockProcess).toHaveBeenCalledWith(linear, state)
+    expect(mockProcess).toHaveBeenCalledTimes(1)
   })
 })

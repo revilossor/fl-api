@@ -51,6 +51,10 @@ describe('request', () => {
     expect(addSchema).toHaveBeenCalledWith(schema.graph, '/Graph')
   })
 
+  it('adds the referenced "/State" schema to the request schema', () => {
+    expect(addSchema).toHaveBeenCalledWith(schema.state, '/State')
+  })
+
   it('uses the request schema to validate the argument', () => {
     expect(validate).toHaveBeenCalledWith(someRequest, schema.request)
   })

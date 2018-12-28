@@ -69,8 +69,7 @@ describe('if the request is valid', () => {
       })
   })
 
-  // TODO test this for nodes that mutate?
-  it('if no state is supplied in the post body sets default state in the response', () => {
+  it('if no state is supplied in the post body sets default state before getting next node', () => {
     const input = { graph: linear }
     return request(app).post('/')
       .send(input)
@@ -78,19 +77,9 @@ describe('if the request is valid', () => {
         expect(response.statusCode).toBe(200)
         expect(JSON.parse(response.text)).toEqual({ ...input,
           state: {
-            current: 'startNode',
+            current: 'one',
             path: []
           } })
-      })
-  })
-
-  it('responds with the input arguments', () => {
-    const input = { graph: linear, state }
-    return request(app).post('/')
-      .send(input)
-      .then(response => {
-        expect(response.statusCode).toBe(200)
-        expect(JSON.parse(response.text)).toEqual(input)
       })
   })
 })

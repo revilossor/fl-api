@@ -1,17 +1,9 @@
-const validate = require('../validate')
+const process = require('./process')
 
 module.exports = {
   next: (graph, state = { current: 'startNode', path: [] }) => {
     if (!graph) { throw Error('no graph passed!') }
-    validate.graph(graph).errors.forEach(error => { throw error })
-    // TODO validate state...
-
-    // TODO process once to get new state...
-
-    return {
-      graph,
-      state
-    }
+    return process(graph, state)
   }
   /*
   response: (graph, state = { current: 'startNode', path: [] }) => {

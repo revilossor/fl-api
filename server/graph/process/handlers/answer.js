@@ -31,11 +31,11 @@ module.exports = (graph, state) => {
         : ''
 
     switch (operation) {
-      case 'assign':
-        value = stateValue
-        break
       case 'append':
         value = `${value}${stateValue}`
+        break
+      case 'assign':
+        value = stateValue
         break
       case 'increment':
         value += stateValue

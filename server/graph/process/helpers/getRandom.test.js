@@ -6,6 +6,10 @@ beforeAll(() => {
   Math.random = mockRandom
 })
 
+beforeEach(() => {
+  mockRandom.mockClear()
+})
+
 describe('argument validation', () => {
   const things = [
     'a',
@@ -38,11 +42,13 @@ describe('argument validation', () => {
   })
 })
 
-it('if there is only one item, it is always returned', () => {
-  const map = new Map()
-  const onlyThing = { the: 'moon' }
-  map.set(onlyThing, 123456)
-  expect(getRandom(map)).toEqual(onlyThing)
+describe('if there is only one item', () => {
+  it('it is always returned', () => {
+    const map = new Map()
+    const onlyThing = { the: 'moon' }
+    map.set(onlyThing, 123456)
+    expect(getRandom(map)).toEqual(onlyThing)
+  })
 })
 
 describe('equal weighting', () => {
