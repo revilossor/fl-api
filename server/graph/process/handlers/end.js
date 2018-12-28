@@ -1,5 +1,5 @@
-const getChildren = require('../getChildren')
-const getSubGraph = require('../getSubGraph')
+const getChildren = require('../helpers/getChildren')
+const getSubGraph = require('../helpers/getSubGraph')
 
 module.exports = (graph, state) => {
   if (state.path.length === 0) {

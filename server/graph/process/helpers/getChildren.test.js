@@ -1,7 +1,7 @@
 const getChildren = require('./getChildren')
 
-const linear = require('../../../fixtures/linear_graph')
-const branching = require('../../../fixtures/branching_graph')
+const linear = require('../../../../fixtures/linear_graph')
+const branching = require('../../../../fixtures/branching_graph')
 
 it('returns the ids of child nodes', () => {
   const state = { current: 'startNode', path: [] }

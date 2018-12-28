@@ -1,5 +1,5 @@
-const sceneGraph = require('../../../fixtures/simple_scene')
-const nestedSceneGraph = require('../../../fixtures/nested_scene')
+const sceneGraph = require('../../../../fixtures/simple_scene')
+const nestedSceneGraph = require('../../../../fixtures/nested_scene')
 const getSubGraph = require('./getSubGraph')
 
 it('gets the sub scene at the path one scene deep', () => {
