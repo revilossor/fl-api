@@ -5,22 +5,23 @@ module.exports = (graph, state) => {
   const scope = getSubGraph(graph, state.path)
   const children = getChildren(scope, state)
   const node = scope.processes[state.current]
+  const next = scope.processes[children[0]]
 
   const text = state.text ? [ ...state.text ] : []
-  if (node.metadata.text) {
-    text.push(node.metadata.text)
+  if (next.metadata.text) {
+    text.push(next.metadata.text)
   }
 
   const audio = state.audio ? [ ...state.audio ] : []
-  if (node.metadata.audio) {
-    audio.push(node.metadata.audio)
+  if (next.metadata.audio) {
+    audio.push(next.metadata.audio)
   }
 
   const { stateKey, stateValue, operation } = node.metadata
   const operationState = {}
 
   if (operation) {
-    let value = state[stateKey] // sorry
+    let value = state[stateKey] // sorry, CBA
       ? operation.includes('crement')
         ? typeof (state[stateKey]) === 'string'
           ? 0

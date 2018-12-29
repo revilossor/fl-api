@@ -21,29 +21,28 @@ describe('traversal', () => {
 
 describe('text', () => {
   const stateWithText = { ...state, text: ['sometext'] }
-
-  describe('if there is text in the node', () => {
+  describe('if there is text in the next node', () => {
     it('if there is text in state, node text is appended to it', () => {
       updated = handler(graph, stateWithText)
       expect(updated.text).toEqual([
         ...stateWithText.text,
-        'talk_one_text'
+        'question_text'
       ])
     })
 
     it('if there is no text in state, its created containing node text', () => {
       updated = handler(graph, state)
       expect(updated.text).toEqual([
-        'talk_one_text'
+        'question_text'
       ])
     })
   })
 
-  describe('if there is no text in the node', () => {
+  describe('if there is no text in the next node node', () => {
     const noTextGraph = JSON.parse(JSON.stringify(graph))
 
     beforeAll(() => {
-      delete noTextGraph.processes.talk_one.metadata.text
+      delete noTextGraph.processes.question.metadata.text
     })
 
     it('if there is text in state, it remains the same', () => {
@@ -61,28 +60,28 @@ describe('text', () => {
 describe('audio', () => {
   const stateWithAudio = { ...state, audio: ['someaudio'] }
 
-  describe('if there is audio in the node', () => {
+  describe('if there is audio in the next node', () => {
     it('if there is audio in state, node audio is appended to it', () => {
       updated = handler(graph, stateWithAudio)
       expect(updated.audio).toEqual([
         ...stateWithAudio.audio,
-        'talk_one_audio'
+        'question_audio'
       ])
     })
 
     it('if there is no audio in state, its created containing node audio', () => {
       updated = handler(graph, state)
       expect(updated.audio).toEqual([
-        'talk_one_audio'
+        'question_audio'
       ])
     })
   })
 
-  describe('if there is no audio in the node', () => {
+  describe('if there is no audio in the next node', () => {
     const noAudioGraph = JSON.parse(JSON.stringify(graph))
 
     beforeAll(() => {
-      delete noAudioGraph.processes.talk_one.metadata.audio
+      delete noAudioGraph.processes.question.metadata.audio
     })
 
     it('if there is audio in state, it remains the same', () => {

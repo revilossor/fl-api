@@ -4,9 +4,9 @@ const getSubGraph = require('../helpers/getSubGraph')
 module.exports = (graph, state) => {
   const scope = getSubGraph(graph, state.path)
   const children = getChildren(scope, state)
-  const node = scope.processes[state.current]
+  const node = scope.processes[children[0]]
 
-  const text = state.text ? [ ...state.text ] : [] // TODO extract this stuff for DRY...?
+  const text = state.text ? [ ...state.text ] : []
   if (node.metadata.text) {
     text.push(node.metadata.text)
   }

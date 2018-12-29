@@ -22,37 +22,38 @@ describe('traversal', () => {
 describe('text', () => {
   const stateWithText = { ...state, text: ['sometext'] }
 
-  describe('if there is text in the node', () => {
+  describe('if there is text in the next node', () => {
+    const textGraph = JSON.parse(JSON.stringify(graph))
+    const value = 'some more text'
+
+    beforeAll(() => {
+      textGraph.processes.shuffleAndTake.metadata.text = value
+    })
+
     it('if there is text in state, node text is appended to it', () => {
-      updated = handler(graph, stateWithText)
+      updated = handler(textGraph, stateWithText)
       expect(updated.text).toEqual([
         ...stateWithText.text,
-        'branch_one_text'
+        value
       ])
     })
 
     it('if there is no text in state, its created containing node text', () => {
-      updated = handler(graph, state)
+      updated = handler(textGraph, state)
       expect(updated.text).toEqual([
-        'branch_one_text'
+        value
       ])
     })
   })
 
-  describe('if there is no text in the node', () => {
-    const noTextGraph = JSON.parse(JSON.stringify(graph))
-
-    beforeAll(() => {
-      delete noTextGraph.processes.branch_one.metadata.text
-    })
-
+  describe('if there is no text in the next node', () => {
     it('if there is text in state, it remains the same', () => {
-      updated = handler(noTextGraph, stateWithText)
+      updated = handler(graph, stateWithText)
       expect(updated.text).toEqual(stateWithText.text)
     })
 
     it('if there is no text in state, its created empty', () => {
-      updated = handler(noTextGraph, state)
+      updated = handler(graph, state)
       expect(updated.text).toEqual([])
     })
   })
@@ -61,37 +62,38 @@ describe('text', () => {
 describe('audio', () => {
   const stateWithAudio = { ...state, audio: ['someaudio'] }
 
-  describe('if there is audio in the node', () => {
+  const audioGraph = JSON.parse(JSON.stringify(graph))
+  const value = 'some maore audio'
+
+  beforeAll(() => {
+    audioGraph.processes.shuffleAndTake.metadata.audio = value
+  })
+
+  describe('if there is audio in the next node', () => {
     it('if there is audio in state, node audio is appended to it', () => {
-      updated = handler(graph, stateWithAudio)
+      updated = handler(audioGraph, stateWithAudio)
       expect(updated.audio).toEqual([
         ...stateWithAudio.audio,
-        'branch_one_audio'
+        value
       ])
     })
 
     it('if there is no audio in state, its created containing node audio', () => {
-      updated = handler(graph, state)
+      updated = handler(audioGraph, state)
       expect(updated.audio).toEqual([
-        'branch_one_audio'
+        value
       ])
     })
   })
 
-  describe('if there is no audio in the node', () => {
-    const noAudioGraph = JSON.parse(JSON.stringify(graph))
-
-    beforeAll(() => {
-      delete noAudioGraph.processes.branch_one.metadata.audio
-    })
-
+  describe('if there is no audio in the next node', () => {
     it('if there is audio in state, it remains the same', () => {
-      updated = handler(noAudioGraph, stateWithAudio)
+      updated = handler(graph, stateWithAudio)
       expect(updated.audio).toEqual(stateWithAudio.audio)
     })
 
     it('if there is no audio in state, its created empty', () => {
-      updated = handler(noAudioGraph, state)
+      updated = handler(graph, state)
       expect(updated.audio).toEqual([])
     })
   })

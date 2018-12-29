@@ -6,31 +6,30 @@ module.exports = (graph, state) => {
   const children = getChildren(scope, state)
   const node = scope.processes[state.current]
 
-  const text = state.text ? [ ...state.text ] : []
-  if (node.metadata.text) {
-    text.push(node.metadata.text)
-  }
-
-  const audio = state.audio ? [ ...state.audio ] : []
-  if (node.metadata.audio) {
-    audio.push(node.metadata.audio)
-  }
-
-  let selectedChild = node.metadata.defaultOption
+  let current = node.metadata.defaultOption
   children.forEach(id => {
     const utterances = scope.processes[id].metadata.utterances.split('\n')
     if (utterances.includes(state.utterance)) {
-      selectedChild = id
+      current = id
     }
   })
+
+  const next = scope.processes[current]
+  const text = []
+  if (next.metadata.text) {
+    text.push(next.metadata.text)
+  }
+
+  const audio = []
+  if (next.metadata.audio) {
+    audio.push(next.metadata.audio)
+  }
 
   return {
     ...state,
     utterance: undefined,
-    current: selectedChild,
+    current,
     text,
-    audio,
-    repromptAudio: node.metadata.repromptAudio,
-    repromptText: node.metadata.repromptText
+    audio
   }
 }

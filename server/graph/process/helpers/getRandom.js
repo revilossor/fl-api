@@ -13,10 +13,6 @@ module.exports = tuples => {
     throw Error('[getRandom] the values of the argument map should all be numbers!')
   }
 
-  // if (tuples.size === 1) {
-  //   return tuples.keys().next().value
-  // }
-
   const totalWeight = weights.reduce((total, weight) => total + weight, 0)
 
   const ranges = new Map()

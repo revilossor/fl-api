@@ -24,37 +24,39 @@ describe('traversal', () => {
 
 describe('text', () => {
   const stateWithText = { ...state, text: ['sometext'] }
-  describe('if there is text in the node', () => {
+
+  describe('if there is text in the next node', () => {
+    const textGraph = JSON.parse(JSON.stringify(graph))
+    const value = 'some other text'
+
+    beforeAll(() => {
+      textGraph.processes.random.metadata.text = value
+    })
+
     it('if there is text in state, node text is appended to it', () => {
-      updated = handler(graph, stateWithText)
+      updated = handler(textGraph, stateWithText)
       expect(updated.text).toEqual([
         ...stateWithText.text,
-        'answer_one_text'
+        value
       ])
     })
 
     it('if there is no text in state, its created containing node text', () => {
-      updated = handler(graph, state)
+      updated = handler(textGraph, state)
       expect(updated.text).toEqual([
-        'answer_one_text'
+        value
       ])
     })
   })
 
-  describe('if there is no text in the node', () => {
-    const noTextGraph = JSON.parse(JSON.stringify(graph))
-
-    beforeAll(() => {
-      delete noTextGraph.processes.answer_one.metadata.text
-    })
-
+  describe('if there is no text in the next node', () => {
     it('if there is text in state, it remains the same', () => {
-      updated = handler(noTextGraph, stateWithText)
+      updated = handler(graph, stateWithText)
       expect(updated.text).toEqual(stateWithText.text)
     })
 
     it('if there is no text in state, its created empty', () => {
-      updated = handler(noTextGraph, state)
+      updated = handler(graph, state)
       expect(updated.text).toEqual([])
     })
   })
@@ -62,42 +64,43 @@ describe('text', () => {
 
 describe('audio', () => {
   const stateWithAudio = { ...state, audio: ['someaudio'] }
-  describe('if there is audio in the node', () => {
+
+  describe('if there is audio in the next node', () => {
+    const audioGraph = JSON.parse(JSON.stringify(graph))
+    const value = 'some other audio'
+
+    beforeAll(() => {
+      audioGraph.processes.random.metadata.audio = value
+    })
+
     it('if there is audio in state, node audio is appended to it', () => {
-      updated = handler(graph, stateWithAudio)
+      updated = handler(audioGraph, stateWithAudio)
       expect(updated.audio).toEqual([
         ...stateWithAudio.audio,
-        'answer_one_audio'
+        value
       ])
     })
 
     it('if there is no audio in state, its created containing node audio', () => {
-      updated = handler(graph, state)
+      updated = handler(audioGraph, state)
       expect(updated.audio).toEqual([
-        'answer_one_audio'
+        value
       ])
     })
   })
 
-  describe('if there is no audio in the node', () => {
-    const noAudioGraph = JSON.parse(JSON.stringify(graph))
-
-    beforeAll(() => {
-      delete noAudioGraph.processes.answer_one.metadata.audio
-    })
-
+  describe('if there is no audio in the next node', () => {
     it('if there is audio in state, it remains the same', () => {
-      updated = handler(noAudioGraph, stateWithAudio)
+      updated = handler(graph, stateWithAudio)
       expect(updated.audio).toEqual(stateWithAudio.audio)
     })
 
     it('if there is no audio in state, its created empty', () => {
-      updated = handler(noAudioGraph, state)
+      updated = handler(graph, state)
       expect(updated.audio).toEqual([])
     })
   })
 })
-
 describe('state operations', () => {
   const stateWithKey = { ...state, answer: 'initial value' }
   const stateWithNumberKey = { ...state, answer: 10 }
@@ -136,6 +139,7 @@ describe('state operations', () => {
   })
 
   describe('append', () => {
+    // TODO test we dont get a sum when both values are numbers
     it('if the key exists in state, appends to it', () => {
       updated = handler(appendGraph, stateWithKey)
       expect(updated.answer).toBe('initial valueone')
