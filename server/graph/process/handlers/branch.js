@@ -16,5 +16,11 @@ module.exports = (graph, state) => {
     audio.push(node.metadata.audio)
   }
 
-  return { ...state, current: children[0], text, audio }
+  return {
+    ...state,
+    current: children[0],
+    text,
+    audio,
+    complete: false
+  }
 }

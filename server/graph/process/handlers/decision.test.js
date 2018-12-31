@@ -22,6 +22,7 @@ describe('traversal', () => {
   })
 })
 
-it('no other properties are added to the state', () => {
-  expect(Object.keys(state)).toEqual(Object.keys(updated))
+it('sets the complete flag to false', () => {
+  updated = handler(graph, state)
+  expect(updated.complete).toEqual(false)
 })

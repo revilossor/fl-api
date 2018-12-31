@@ -2,7 +2,7 @@ const request = require('supertest')
 const express = require('express')
 const bodyParser = require('body-parser')
 const validate = require('../validate')
-const linear = require('../../fixtures/linear_graph')
+const types = require('../../fixtures/node_types')
 const graph = require('../graph')
 
 let app
@@ -12,7 +12,7 @@ beforeAll(() => {
   jest.spyOn(express.Router, 'route')
   app = express()
   app.use(bodyParser.json())
-  app.use('/', require('./next'))
+  app.use('/', require('./lines'))
 })
 
 it('sets a route for "/"', () => {
@@ -25,7 +25,6 @@ it('404 for GET requests', () => request(app).get('/')
   })
 )
 
-// TODO graph and state should be required
 describe('if the post request is invalid', () => {
   const someInvalidGraph = { the: 'moon' }
   const mockValidateError = Error('mock validate error')
@@ -50,37 +49,37 @@ describe('if the post request is invalid', () => {
 })
 
 describe('if the request is valid', () => {
-  const state = { current: 'one', path: [] }
+  const state = { current: 'startNode', path: [] }
 
   beforeAll(() => {
-    jest.spyOn(graph, 'next')
+    jest.spyOn(graph, 'lines')
   })
 
   afterEach(() => {
-    graph.next.mockClear()
+    graph.lines.mockClear()
   })
 
-  it('calls graph.next with the posted arguments', () => {
-    const input = { graph: linear, state }
+  it('calls graph.lines with the posted arguments', () => {
+    const input = { graph: types, state }
     return request(app).post('/')
       .send(input)
       .then(response => {
-        expect(graph.next).toHaveBeenCalledWith(linear, state)
+        expect(graph.lines).toHaveBeenCalledWith(types, state)
       })
   })
 
-  it('if no state is supplied in the post body sets default state before getting next node', () => {
-    const input = { graph: linear }
+  it('returns the response', () => {
+    const input = { graph: types }
+    const out = { the: 'moon' }
+    graph.lines.mockReturnValueOnce(out)
     return request(app).post('/')
       .send(input)
       .then(response => {
         expect(response.statusCode).toBe(200)
-        expect(JSON.parse(response.text)).toEqual({ ...input,
-          state: {
-            current: 'one',
-            path: [],
-            complete: false
-          } })
+        expect(JSON.parse(response.text)).toEqual({
+          graph: types,
+          state: out
+        })
       })
   })
 })

@@ -20,8 +20,8 @@ describe('traversal', () => {
       expect(updated.path).toEqual([])
     })
 
-    it('no additional properties are added', () => {
-      expect(Object.keys(updated)).toEqual(Object.keys(state))
+    it('sets the complete flag to true', () => {
+      expect(updated.complete).toEqual(true)
     })
   })
 
@@ -42,8 +42,8 @@ describe('traversal', () => {
       expect(updated.path).toEqual([])
     })
 
-    it('no additional properties are added', () => {
-      expect(Object.keys(updated)).toEqual(Object.keys(state))
+    it('sets the complete flag to false', () => {
+      expect(updated.complete).toEqual(false)
     })
   })
 })

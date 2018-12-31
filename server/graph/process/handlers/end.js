@@ -3,7 +3,7 @@ const getSubGraph = require('../helpers/getSubGraph')
 
 module.exports = (graph, state) => {
   if (state.path.length === 0) {
-    return { ...state, current: null }
+    return { ...state, current: null, complete: true }
   }
   const path = [ ...state.path ]
   const [ parent ] = path.splice(-1, 1)
@@ -11,6 +11,7 @@ module.exports = (graph, state) => {
   return {
     ...state,
     path,
-    current: getChildren(scope, { ...state, current: parent })[0]
+    current: getChildren(scope, { ...state, current: parent })[0],
+    complete: false
   }
 }

@@ -34,3 +34,8 @@ describe('traversal', () => {
     })
   })
 })
+
+it('sets the complete flag to false', () => {
+  updated = handler(graph, { current: 'fork_one', path: [] })
+  expect(updated.complete).toEqual(false)
+})

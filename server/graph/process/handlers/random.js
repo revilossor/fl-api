@@ -11,5 +11,5 @@ module.exports = (graph, state) => {
     map.set(child, parseFloat(scope.processes[child].metadata.weight))
   })
 
-  return { ...state, current: getRandom(map) }
+  return { ...state, current: getRandom(map), complete: false }
 }

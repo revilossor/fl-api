@@ -53,3 +53,8 @@ describe('finally', () => {
     expect(updated.taken).not.toBeDefined()
   })
 })
+
+it('sets the complete flag to false', () => {
+  updated = handler(graph, state)
+  expect(updated.complete).toEqual(false)
+})

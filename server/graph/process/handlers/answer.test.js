@@ -185,3 +185,8 @@ describe('state operations', () => {
     })
   })
 })
+
+it('sets the complete flag to false', () => {
+  updated = handler(graph, state)
+  expect(updated.complete).toEqual(false)
+})

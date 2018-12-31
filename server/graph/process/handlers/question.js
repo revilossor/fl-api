@@ -30,6 +30,7 @@ module.exports = (graph, state) => {
     utterance: undefined,
     current,
     text,
-    audio
+    audio,
+    complete: true
   }
 }

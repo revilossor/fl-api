@@ -135,3 +135,9 @@ it('the input state is not mutated', () => {
   updated = handler(graph, input)
   expect(input).toEqual({ current: 'question', path: [], utterance: 'two' })
 })
+
+it('sets the complete flag to true', () => {
+  const input = { current: 'question', path: [] }
+  updated = handler(graph, input)
+  expect(updated.complete).toEqual(true)
+})

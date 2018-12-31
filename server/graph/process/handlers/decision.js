@@ -15,5 +15,9 @@ module.exports = (graph, state) => {
     }
   })
 
-  return { ...state, current: selectedChild }
+  return {
+    ...state,
+    current: selectedChild,
+    complete: false
+  }
 }

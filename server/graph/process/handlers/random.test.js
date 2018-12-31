@@ -42,6 +42,7 @@ it('the updated path is the input path', () => {
   expect(updated.path).toEqual([])
 })
 
-it('no additional properties are added', () => {
-  expect(Object.keys(updated)).toEqual(Object.keys(state))
+it('sets the complete flag to false', () => {
+  updated = handler(graph, state)
+  expect(updated.complete).toEqual(false)
 })

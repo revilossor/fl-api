@@ -19,5 +19,5 @@ module.exports = (graph, state) => {
   })
   const current = getRandom(map)
 
-  return { ...state, current, taken: [ ...taken, current ] }
+  return { ...state, current, taken: [ ...taken, current ], complete: false }
 }

@@ -95,3 +95,7 @@ describe('audio', () => {
     })
   })
 })
+
+it('sets the complete flag to false', () => {
+  expect(updated.complete).toEqual(false)
+})

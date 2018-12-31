@@ -49,5 +49,12 @@ module.exports = (graph, state) => {
     operationState[stateKey] = value
   }
 
-  return { ...state, current: children[0], text, audio, ...operationState }
+  return {
+    ...state,
+    current: children[0],
+    text,
+    audio,
+    ...operationState,
+    complete: false
+  }
 }
