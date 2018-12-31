@@ -8,7 +8,7 @@ module.exports = {
   random: require('./random'),
   randomiserBranch: require('./randomiserBranch'),
   scene: require('./scene'),
-  shuffleandtake: require('./shuffleandtake'),
+  shuffleAndTake: require('./shuffleAndTake'),
   start: require('./start'),
   talk: require('./talk')
 }

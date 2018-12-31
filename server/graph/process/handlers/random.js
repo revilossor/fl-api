@@ -1,6 +1,7 @@
 const getChildren = require('../helpers/getChildren')
 const getSubGraph = require('../helpers/getSubGraph')
 const getRandom = require('../helpers/getRandom')
+const getResponse = require('../helpers/getResponse')
 
 module.exports = (graph, state) => {
   const scope = getSubGraph(graph, state.path)
@@ -11,5 +12,10 @@ module.exports = (graph, state) => {
     map.set(child, parseFloat(scope.processes[child].metadata.weight))
   })
 
-  return { ...state, current: getRandom(map), complete: false }
+  const current = getRandom(map)
+  const node = scope.processes[current]
+
+  const response = getResponse(node, state)
+
+  return { ...state, ...response, current }
 }

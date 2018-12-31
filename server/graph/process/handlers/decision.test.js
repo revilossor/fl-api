@@ -21,8 +21,3 @@ describe('traversal', () => {
     expect(updated.current).toBe('branch_one')
   })
 })
-
-it('sets the complete flag to false', () => {
-  updated = handler(graph, state)
-  expect(updated.complete).toEqual(false)
-})

@@ -22,85 +22,6 @@ describe('traversal', () => {
   })
 })
 
-describe('text', () => {
-  const stateWithText = { ...state, text: ['sometext'] }
-
-  describe('if there is text in the next node', () => {
-    const textGraph = JSON.parse(JSON.stringify(graph))
-    const value = 'some other text'
-
-    beforeAll(() => {
-      textGraph.processes.random.metadata.text = value
-    })
-
-    it('if there is text in state, node text is appended to it', () => {
-      updated = handler(textGraph, stateWithText)
-      expect(updated.text).toEqual([
-        ...stateWithText.text,
-        value
-      ])
-    })
-
-    it('if there is no text in state, its created containing node text', () => {
-      updated = handler(textGraph, state)
-      expect(updated.text).toEqual([
-        value
-      ])
-    })
-  })
-
-  describe('if there is no text in the next node', () => {
-    it('if there is text in state, it remains the same', () => {
-      updated = handler(graph, stateWithText)
-      expect(updated.text).toEqual(stateWithText.text)
-    })
-
-    it('if there is no text in state, its created empty', () => {
-      updated = handler(graph, state)
-      expect(updated.text).toEqual([])
-    })
-  })
-})
-
-describe('audio', () => {
-  const stateWithAudio = { ...state, audio: ['someaudio'] }
-
-  describe('if there is audio in the next node', () => {
-    const audioGraph = JSON.parse(JSON.stringify(graph))
-    const value = 'some other audio'
-
-    beforeAll(() => {
-      audioGraph.processes.random.metadata.audio = value
-    })
-
-    it('if there is audio in state, node audio is appended to it', () => {
-      updated = handler(audioGraph, stateWithAudio)
-      expect(updated.audio).toEqual([
-        ...stateWithAudio.audio,
-        value
-      ])
-    })
-
-    it('if there is no audio in state, its created containing node audio', () => {
-      updated = handler(audioGraph, state)
-      expect(updated.audio).toEqual([
-        value
-      ])
-    })
-  })
-
-  describe('if there is no audio in the next node', () => {
-    it('if there is audio in state, it remains the same', () => {
-      updated = handler(graph, stateWithAudio)
-      expect(updated.audio).toEqual(stateWithAudio.audio)
-    })
-
-    it('if there is no audio in state, its created empty', () => {
-      updated = handler(graph, state)
-      expect(updated.audio).toEqual([])
-    })
-  })
-})
 describe('state operations', () => {
   const stateWithKey = { ...state, answer: 'initial value' }
   const stateWithNumberKey = { ...state, answer: 10 }
@@ -186,7 +107,7 @@ describe('state operations', () => {
   })
 })
 
-it('sets the complete flag to false', () => {
-  updated = handler(graph, state)
-  expect(updated.complete).toEqual(false)
-})
+// it('sets the complete flag to false', () => {
+//   updated = handler(graph, state)
+//   expect(updated.complete).toEqual(false)
+// })

@@ -8,7 +8,7 @@ const mockGetRandom = jest.fn()
 
 beforeAll(() => {
   jest.mock('../helpers/getRandom', () => mockGetRandom)
-  handler = require('./shuffleandtake')
+  handler = require('./shuffleAndTake')
 })
 
 afterEach(() => {
@@ -52,9 +52,4 @@ describe('finally', () => {
   it('clears the taken array from state', () => {
     expect(updated.taken).not.toBeDefined()
   })
-})
-
-it('sets the complete flag to false', () => {
-  updated = handler(graph, state)
-  expect(updated.complete).toEqual(false)
 })

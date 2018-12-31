@@ -17,8 +17,4 @@ describe('traversal', () => {
   it('the updated path is the input path', () => {
     expect(updated.path).toEqual([])
   })
-
-  it('sets the complete flag to false', () => {
-    expect(updated.complete).toEqual(false)
-  })
 })

@@ -2,12 +2,14 @@ let handler
 
 const graph = require('../../../../fixtures/node_types')
 const state = { current: 'random', path: [] }
+const mockGetResponse = jest.fn()
 
 let updated
 const mockGetRandom = jest.fn()
 
 beforeAll(() => {
   jest.mock('../helpers/getRandom', () => mockGetRandom)
+  jest.mock('../helpers/getResponse', () => mockGetResponse)
   handler = require('./random')
 })
 
@@ -20,6 +22,7 @@ describe('traversal', () => {
 
   beforeAll(() => {
     mockGetRandom.mockReturnValueOnce(mockRandomChildId)
+    mockGetResponse.mockReturnValueOnce({})
     updated = handler(graph, state)
   })
 
@@ -40,9 +43,4 @@ describe('traversal', () => {
 
 it('the updated path is the input path', () => {
   expect(updated.path).toEqual([])
-})
-
-it('sets the complete flag to false', () => {
-  updated = handler(graph, state)
-  expect(updated.complete).toEqual(false)
 })

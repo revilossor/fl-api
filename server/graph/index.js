@@ -8,10 +8,8 @@ module.exports = {
   lines: (graph, state = { current: 'startNode', path: [] }) => {
     if (!graph) { throw Error('no graph passed!') }
     let updated = process(graph, state)
-    console.dir({ updated })
     while (updated.complete === false) {
       updated = process(graph, updated)
-      console.dir({ updated })
     }
     return updated
   }

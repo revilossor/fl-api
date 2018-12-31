@@ -8,7 +8,7 @@ const mockHandlers = {
   random: jest.fn(),
   randomiserBranch: jest.fn(),
   scene: jest.fn(),
-  shuffleandtake: jest.fn(),
+  shuffleAndTake: jest.fn(),
   start: jest.fn(),
   talk: jest.fn()
 }

@@ -18,7 +18,4 @@ describe('traversal', () => {
     expect(updated.path).toEqual([ 'scene' ])
   })
 
-  it('sets the complete flag to false', () => {
-    expect(updated.complete).toEqual(false)
-  })
 })

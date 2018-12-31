@@ -75,12 +75,11 @@ describe('if the request is valid', () => {
       .send(input)
       .then(response => {
         expect(response.statusCode).toBe(200)
-        expect(JSON.parse(response.text)).toEqual({ ...input,
-          state: {
+        expect(JSON.parse(response.text)).toEqual(expect.objectContaining({ ...input,
+          state: expect.objectContaining({
             current: 'one',
-            path: [],
-            complete: false
-          } })
+            path: []
+          }) }))
       })
   })
 })

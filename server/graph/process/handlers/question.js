@@ -1,5 +1,6 @@
 const getChildren = require('../helpers/getChildren')
 const getSubGraph = require('../helpers/getSubGraph')
+const getResponse = require('../helpers/getResponse')
 
 module.exports = (graph, state) => {
   const scope = getSubGraph(graph, state.path)
@@ -15,22 +16,12 @@ module.exports = (graph, state) => {
   })
 
   const next = scope.processes[current]
-  const text = []
-  if (next.metadata.text) {
-    text.push(next.metadata.text)
-  }
-
-  const audio = []
-  if (next.metadata.audio) {
-    audio.push(next.metadata.audio)
-  }
-
+  const response = getResponse(next, state)
+  
   return {
     ...state,
+    ...response,
     utterance: undefined,
-    current,
-    text,
-    audio,
-    complete: true
+    current
   }
 }
