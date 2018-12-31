@@ -17,7 +17,7 @@ module.exports = (graph, state) => {
 
   const next = scope.processes[current]
   const response = getResponse(next, state)
-  
+
   return {
     ...state,
     ...response,

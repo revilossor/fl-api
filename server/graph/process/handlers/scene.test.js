@@ -17,5 +17,4 @@ describe('traversal', () => {
   it('the updated path is the input path, with the scene id appended', () => {
     expect(updated.path).toEqual([ 'scene' ])
   })
-
 })

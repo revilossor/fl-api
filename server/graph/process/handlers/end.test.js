@@ -41,6 +41,5 @@ describe('traversal', () => {
     it('the path is the path to the parent scene', () => {
       expect(updated.path).toEqual([])
     })
-
   })
 })
