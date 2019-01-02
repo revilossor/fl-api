@@ -9,7 +9,9 @@ module.exports = (graph, state) => {
 
   let current = node.metadata.defaultOption
   children.forEach(id => {
-    const utterances = scope.processes[id].metadata.utterances.split('\n')
+    const utterances = scope.processes[id].metadata.utterances
+      ? scope.processes[id].metadata.utterances.split('\n')
+      : []
     if (utterances.includes(state.utterance)) {
       current = id
     }
